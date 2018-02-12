@@ -1,0 +1,60 @@
+<div class="container content">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-2">
+
+            <ul class="list-group">
+              <li class="list-group-item">
+                <span class="badge"><%= $score %></span>
+                Score
+              </li>
+              <li class="list-group-item">
+                <span class="badge"><%= $streak %></span>
+                Streak
+              </li>
+            </ul>
+
+            <% if $guessInfo != '' %>
+              <% if $guessInfo == "Correct!"%><div class="panel panel-success"><%end%>
+              <% if $guessInfo != "Correct!"%><div class="panel panel-danger"><%end%>
+
+              <div class="panel-heading">
+                <h3 class="panel-title">Previous Answer</h3>
+              </div>
+              <div class="panel-body">
+                <%= $guessInfo %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="col-md-6 ">
+            <div class="testimonials">
+              <div class="active item">
+
+                  <div class="well">
+                    <p class="date pull-right"><%= @tweet.date %></p>
+                    <br><p><%= @tweet.text %></p>
+
+                    <%= form_tag tweets_guess_path, method: :post, :class => "pull-right" do %>  
+                      <%= text_field_tag :guess, params[:guess], autofocus: true, :autocomplete => :off, :style => "width: 150px" %>  
+                      <%= submit_tag "➩" %>    
+                    <% end %> 
+                    <br>
+                  </div>
+
+                  <div class="carousel-info">
+                  <div class="photo">
+                   <% (1..$lives).each do %>
+                      <%= image_tag("profile.png", :class => "pull-left") %>
+                    <% end %>
+                   </div>
+                    <div class="info">
+                      <span class="testimonials-name">Name here</span>
+                      <span class="testimonials-post">Tagline here</span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
